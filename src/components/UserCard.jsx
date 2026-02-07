@@ -37,7 +37,7 @@ const UserCard = ({ user }) => {
       );
       dispatch(removeUserFromFeed(userId));
     } catch (err) {
-      // Error page
+      console.log(err.response?.data || "Something went wrong");
     }
   };
 

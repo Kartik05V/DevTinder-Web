@@ -17,7 +17,7 @@ const Requests = () => {
       );
       dispatch(removeRequest(_id));
     } catch (err) {
-      //error page
+      console.log(err.response?.data || "Something went wrong");
     }
   };
 
@@ -29,7 +29,7 @@ const Requests = () => {
 
       dispatch(addRequests(res.data.data));
     } catch (err) {
-      // Handle Error Case
+      console.log(err.response?.data || "Something went wrong");
     }
   };
 

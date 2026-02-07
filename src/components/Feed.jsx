@@ -18,7 +18,7 @@ const Feed = () => {
       });
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
-      //TODO: handle error
+      console.log(err.response?.data || "Something went wrong");
     }
   };
 
