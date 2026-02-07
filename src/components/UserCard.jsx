@@ -22,7 +22,7 @@ const UserCard = ({ user }) => {
   const { firstName, lastName, photoUrl, age, gender, about } = user;
 
   return (
-    <div className="card relative w-full max-w-sm h-[420px] overflow-hidden rounded-xl shadow-xl">
+    <div className="card relative w-full max-w-sm h-[76vh] overflow-hidden rounded-xl shadow-xl">
       {/* Background Image */}
       <img
         src={photoUrl}
