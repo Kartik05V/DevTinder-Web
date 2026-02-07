@@ -31,7 +31,7 @@ const UserCard = ({ user }) => {
       />
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex h-full flex-col justify-end bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
+      <div className="relative z-10 flex h-full flex-col justify-end bg-linear-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
         <h2 className="text-xl font-semibold">
           {firstName} {lastName}
         </h2>
