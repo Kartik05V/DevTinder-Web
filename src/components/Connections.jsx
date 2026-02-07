@@ -24,7 +24,12 @@ const Connections = () => {
 
   if (!connections) return;
 
-  if (connections.length === 0) return <h1> No Connections Found</h1>;
+  if (connections.length === 0)
+    return (
+      <h1 className="text-center text-xl font-bold text-white mt-6 mb-6">
+        No Connections Found
+      </h1>
+    );
 
   return (
     <div className="my-8 px-4">
@@ -34,12 +39,12 @@ const Connections = () => {
 
       <div className="space-y-3">
         {connections.map((connection) => {
-          const { firstName, lastName, photoUrl, age, gender, about } =
+          const { _id, firstName, lastName, photoUrl, age, gender, about } =
             connection;
 
           return (
             <div
-              key={firstName + lastName}
+              key={_id}
               className="group flex items-center gap-4
                      bg-base-300 rounded-lg px-4 py-3
                      max-w-xl mx-auto
