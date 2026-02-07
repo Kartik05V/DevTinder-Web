@@ -3,7 +3,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
-import { removeUser, removeFeed } from "../utils/slices/userSlice";
+import { removeUser } from "../utils/slices/userSlice";
+import { removeFeed } from "../utils/slices/feedSlice";
 import { emptyRequests } from "../utils/slices/requestSlice";
 import { removeConnections } from "../utils/slices/connectionSlice";
 
@@ -23,9 +24,9 @@ const NavBar = () => {
     try {
       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
-      dispatch(removeFeed);
-      dispatch(emptyRequests);
-      dispatch(removeConnections);
+      dispatch(removeFeed());
+      dispatch(emptyRequests());
+      dispatch(removeConnections());
       return navigate("/login");
     } catch (err) {
       console.log(err.response?.data || "Something went wrong");
