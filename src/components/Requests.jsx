@@ -1,12 +1,25 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addRequests } from "../utils/slices/requestSlice";
+import { addRequests, removeRequest } from "../utils/slices/requestSlice";
 import { useEffect } from "react";
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
   const dispatch = useDispatch();
+
+  const reviewRequest = async (status, _id) => {
+    try {
+      const res = axios.post(
+        BASE_URL + "/request/review/" + status + "/" + _id,
+        {},
+        { withCredentials: true },
+      );
+      dispatch(removeRequest(_id));
+    } catch (err) {
+      //error page
+    }
+  };
 
   const fetchRequests = async () => {
     try {
@@ -55,9 +68,7 @@ const Requests = () => {
                      transition-all duration-200
                      hover:shadow-md hover:scale-[1.02]"
             >
-              {/* Left: Avatar + Info */}
               <div className="flex items-center gap-4 min-w-0">
-                {/* Avatar */}
                 <div className="avatar shrink-0">
                   <div className="mask mask-squircle w-16 h-16">
                     <img
@@ -70,7 +81,6 @@ const Requests = () => {
                   </div>
                 </div>
 
-                {/* Info */}
                 <div className="min-w-0">
                   <h2 className="font-semibold text-base truncate">
                     {firstName} {lastName}
@@ -94,12 +104,17 @@ const Requests = () => {
                 </div>
               </div>
 
-              {/* Right: Actions */}
               <div className="flex gap-2 shrink-0">
-                <button className="btn btn-sm btn-outline btn-error">
+                <button
+                  className="btn btn-sm btn-outline btn-error"
+                  onClick={() => reviewRequest("rejected", request._id)}
+                >
                   Reject
                 </button>
-                <button className="btn btn-sm btn-primary btn-outline">
+                <button
+                  className="btn btn-sm btn-primary btn-outline"
+                  onClick={() => reviewRequest("accepted", request._id)}
+                >
                   Accept
                 </button>
               </div>
